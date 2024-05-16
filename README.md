@@ -4,10 +4,9 @@
 
 # Delvin
 
-
 A program _trying_ to solve tasks from the [SWE-bench Lite](https://huggingface.co/datasets/princeton-nlp/SWE-bench_Lite/viewer/default/dev?row=22) dataset with simple actions
 
-Achieves 23% pass on SWE Bench Lite through LLM eval, so take that result with a grain of salt!
+Achieves 23% pass on SWE Bench Lite through LLM eval, so take that result with a big grain of salt!
 
 
 # Requirements
