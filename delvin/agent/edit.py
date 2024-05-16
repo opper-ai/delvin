@@ -86,22 +86,6 @@ async def apply_diff(root_path: str, file_path: str, diff_file_path: str) -> str
     return diff_stdout.decode().strip()
 
 
-async def print_diff_between_diffs(old_diff_path: str, new_diff_path: str) -> None:
-    """Prints the diff between the old diff file and the new diff file."""
-    diff_command = f"diff -u {old_diff_path} {new_diff_path}"
-    diff_process = await asyncio.create_subprocess_shell(
-        diff_command,
-        stdout=asyncio.subprocess.PIPE,
-        stderr=asyncio.subprocess.PIPE,
-    )
-    diff_stdout, diff_stderr = await diff_process.communicate()
-    if diff_process.returncode != 0:
-        raise ValueError(
-            f"Error generating diff between old and new diffs: {diff_stderr.decode().strip()} {diff_stdout.decode().strip()}"
-        )
-    print(f"Differences between old and new diffs:\n{diff_stdout.decode().strip()}")
-
-
 async def edit_file(root_path: str, edit: Edit) -> str:
     """Edit a file in the repository."""
 
@@ -138,36 +122,6 @@ async def lint_file(file_path: str) -> str:
             f"Linter returned error: {ruff_stderr.decode().strip()} {ruff_stdout.decode().strip()}"
         )
     return ""
-
-
-async def get_lines(root_path, file_path, start_line, end_line):
-    with open(os.path.join(root_path, file_path), "r") as file:
-        all_lines = file.readlines()
-        start = max(0, start_line - 1)
-        end = min(len(all_lines), end_line)
-        file_contents = "".join(
-            f"{line}" for index, line in enumerate(all_lines[start:end])
-        )
-    return file_contents
-
-
-async def get_diff(root_path: str, file_path: str) -> str:
-    import asyncio
-
-    path = os.path.join(root_path, file_path)
-    diff_command = f"git diff {path}"
-    diff_process = await asyncio.create_subprocess_shell(
-        diff_command,
-        stdout=asyncio.subprocess.PIPE,
-        stderr=asyncio.subprocess.PIPE,
-        cwd=root_path,
-    )
-    diff_stdout, diff_stderr = await diff_process.communicate()
-    if diff_process.returncode != 0:
-        raise ValueError(
-            f"Error running git diff: {diff_stderr.decode().strip()} {diff_stdout.decode().strip()}"
-        )
-    return diff_stdout.decode().strip()
 
 
 async def edit_files(root_path: str, edits: Edits) -> str:
