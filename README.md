@@ -25,7 +25,14 @@ python main.py
 
 # How does it work?
 
+
+<p align="center">
+  <img src="resources/architecture.png" alt="Architecture">
+</p>
+
 Delvin is simple agent that can view, edit, and search files. Every action goes through a reflection stage and results from the environment (bad diffs, linting errors) are fed back to the model.
+
+We use the [Opper](https://opper.ai) SDK to easily build structured functions. No dirty parsing needed :)
 
 
 
