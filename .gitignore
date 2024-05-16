@@ -1,0 +1,8 @@
+__pycache__
+.DS_Store
+.venv
+.ruff_cache
+.vscode
+.pytest_cache
+fixed_diff
+temp_*
