@@ -33,10 +33,12 @@ Delvin is simple agent that can view, edit, and search files. Every action goes 
 
 We use the [Opper](https://opper.ai) SDK to easily build structured functions. No dirty parsing needed :)
 
+# Can I use this without using Opper?
+
+No. This repo relies extensively on our SDK and backend to interface with models and get tracing. It's just a hack project that turned out to work surprisingly well!
 
 # Can I run this on my own GitHub issues?
 
 No. If you want to adapt this to your own issues then you will have to edit the main file to load issues from github. PRs welcome:)
-
 
 
