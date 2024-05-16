@@ -36,15 +36,6 @@ class ViewFile(BaseModel):
         return f"Viewing {self.file_path} from {self.cursor_line-self.before} |{self.cursor_line}| {self.cursor_line+self.after}."
 
 
-class RunFile(BaseModel):
-    """Run a file in the repository with the python command"""
-
-    file_path: str = Field(..., description="Path of the python file to run.")
-
-    def __str__(self):
-        return f"Running {self.file_path}"
-
-
 class CreateFile(BaseModel):
     """Create a new file in the repository."""
 

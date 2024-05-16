@@ -13,6 +13,7 @@ Achieves 23% pass on SWE Bench Lite through LLM eval, so take that result with a
 # Requirements
 
 - Python 3.9+
+- `git`
 - An [Opper](https://opper.ai) API key
 
 # Run it

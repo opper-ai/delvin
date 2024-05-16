@@ -13,14 +13,12 @@ from .actions import (
     ActionWithResult,
     CreateFile,
     Edits,
-    RunFile,
     Search,
     Trajectory,
     ViewFile,
 )
 from .edit import edit_files
 from .functions import evaluate_action
-from .run import run_file
 from .view import view_file
 
 
@@ -142,11 +140,6 @@ class Agent(BaseModel):
             return await view_file(
                 self.path,
                 view_file_input,
-            )
-        elif action.action_name == "run_file":
-            return await run_file(
-                self.path,
-                cast(RunFile, action.action_input),
             )
         else:
             raise ValueError(f"Unknown action: {action.action_name}")

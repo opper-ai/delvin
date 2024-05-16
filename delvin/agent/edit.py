@@ -1,30 +1,8 @@
 import asyncio
 import os
 
-
 from delvin.agent.actions import Edit, Edits
 from delvin.agent.functions import smart_code_replace
-
-
-async def edit_file_no_ai(root_path: str, edit: Edit) -> str:
-    """Edit a file in the repository."""
-    file_path = os.path.join(root_path, edit.file_path)
-    if not os.path.exists(file_path):
-        raise ValueError(f"Error: File does not exist - {file_path}")
-    with open(file_path, "r") as file:
-        lines = file.readlines()
-
-    start_index = edit.start_line - 1
-    end_index = edit.end_line
-    before = lines[:start_index]
-    after = lines[end_index:]
-
-    new_content = "".join(before) + edit.new_code + "\n" + "".join(after)
-    content = new_content
-    with open(file_path, "w") as file:
-        file.write(content)
-
-    return content
 
 
 async def edit_full_rewrite(root_path: str, edit: Edit) -> str:

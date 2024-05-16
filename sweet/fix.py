@@ -37,12 +37,12 @@ async def setup_agent(
 
 async def agent_fix(
     entry: Entry,
-    root_path: str,
+    predictions_directory: str,
     overwrite: bool = False,
 ) -> Tuple[str, Agent]:
-    destination = f"{root_path}/entries/{entry.instance_id}/0/{entry.repo}"
+    destination = f"/tmp/sweet/entries/{entry.instance_id}/0/{entry.repo}"
     agent = await setup_agent(
-        entry, f"{root_path}/predictions", destination, overwrite=overwrite
+        entry, predictions_directory, destination, overwrite=overwrite
     )
     if agent is None:
         return (None, None)
@@ -57,7 +57,7 @@ async def agent_fix(
 
 async def fix(
     entry: Entry,
-    root_path: str,
+    predictions_directory: str,
     overwrite: bool = False,
 ) -> str:
     print("=============================================================")
@@ -75,7 +75,7 @@ async def fix(
             "commit": entry.base_commit,
         },
     ) as span:
-        diff, agent = await agent_fix(entry, root_path, overwrite=overwrite)
+        diff, agent = await agent_fix(entry, predictions_directory, overwrite=overwrite)
         if diff is None:
             return None
         print(f"Saving diff:\n{diff}")
@@ -91,10 +91,10 @@ async def fix(
             gold_diff=entry.patch,
         )
         save_prediction(
-            path=f"{root_path}/predictions",
+            path=predictions_directory,
             instance_id=entry.instance_id,
             prediction=diff,
-            model_name="delvin",
+            model_name="sweet",
             evaluation=evaluation,
             meta_evaluation=meta_eval,
         )

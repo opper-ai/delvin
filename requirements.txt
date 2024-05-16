@@ -20,14 +20,14 @@ iniconfig==2.0.0
 multidict==6.0.5
 multiprocess==0.70.16
 numpy==1.26.4
-opperai==0.3.0
+opperai==0.4.0
 packaging==24.0
 pandas==2.2.2
 pluggy==1.4.0
 pyarrow==15.0.2
 pyarrow-hotfix==0.6
-pydantic==2.7.0
-pydantic-core==2.18.1
+pydantic==2.7.1
+pydantic-core==2.18.2
 pytest==8.1.1
 pytest-asyncio==0.23.6
 python-dateutil==2.9.0.post0
