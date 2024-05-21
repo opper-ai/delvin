@@ -8,6 +8,8 @@ A program _trying_ to solve tasks from the [SWE-bench Lite](https://huggingface.
 
 Achieves 23% pass on SWE Bench Lite through LLM eval, so take that result with a big grain of salt!
 
+A lot more details in our [blog post](https://opper.ai/blog/introducing-delvin).
+
 
 # Requirements
 
